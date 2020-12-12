@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "./react-auth0-spa";
 
-const ShowApps = () => {
-  const [apps, setApps] = useState([]);
+const ShowData = () => {
+  const [data, setData] = useState([]);
 
   const {
     getTokenSilently,
@@ -11,12 +11,12 @@ const ShowApps = () => {
   } = useAuth0();
 
   useEffect(() => {
-    const getApps = async () => {
+    const getData = async () => {
       try {
         const token = await getTokenSilently();
         // Send a GET request to the server and add the signed in user's
         // access token in the Authorization header
-        const response = await fetch("http://localhost:8080/apps", {
+        const response = await fetch("http://localhost:8080/data", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -24,13 +24,13 @@ const ShowApps = () => {
 
         const responseData = await response.json();
 
-        setApps(responseData);
+        setData(responseData);
       } catch (error) {
         console.error(error);
       }
     };
 
-    getApps();
+    getData();
   }, []);
 
   if (loading || !user) {
@@ -41,12 +41,12 @@ const ShowApps = () => {
     <div className="container">
       <div className="jumbotron text-center mt-5">
         <div className="row">
-          {apps.map(function (app, index) {
+          {data.map(function (d, index) {
             return (
               <div className="col-sm-4" key={index}>
                 <div className="card mb-4">
-                  <div className="card-header">{app.Name}</div>
-                  <div className="card-body">{app.Description}</div>
+                  <div className="card-header">{d.Name}</div>
+                  <div className="card-body">{d.Description}</div>
                   <div className="card-footer">
                   </div>
                 </div>
@@ -59,4 +59,4 @@ const ShowApps = () => {
   );
 };
 
-export default ShowApps;
+export default ShowData;
