@@ -2,29 +2,61 @@
 Example RBAC implementation with Casbin and Auth0
 
 <p  align="center">
-    <img src="./images/auth0-rbac.png" alt="Auth0 RBAC"/>
+    <img src="./images/casbin-auth0-rbac.png"  width="50%" height="50%" alt="Casbin Auth0 RBAC"/>
 </p>
 
 
-Config setup
+## Setup
 1. create auth0 account
 2. create app
-3. set Allowed Callback URLs and Allowed Logout URLs and Allowed Web Origins to http://localhost:3000
+<p  align="center">
+    <img src="./images/create-app.png" alt="Auth0 Create App" width="50%" height="50%"/>
+</p>
 
-Initial setup
+3. update app settings to set Allowed Callback URLs and Allowed Logout URLs and Allowed Web Origins to http://localhost:3000
+<p  align="center">
+    <img src="./images/app-settings.png" alt="Auth0 Application Settings" width="50%" height="50%"/>
+</p>
+
+4. update app settings to enable RBAC
+<p  align="center">
+    <img src="./images/rbac-settings.png" alt="Auth0 Application Settings" width="50%" height="50%"/>
+</p>
+
+5. create an API (the API identifier is the value used for REACT_APP_AUDIENCE environment variable below)
+<p  align="center">
+    <img src="./images/new-api.png" alt="Auth0 API" width="50%" height="50%"/>
+</p>
+
+6. create two users, alice@example.com and bob@example.com
+<p  align="center">
+    <img src="./images/create-users.png" alt="Auth0 Create Users" width="50%" height="50%"/>
+</p>
+
+7. follow instructions in [casbin-auth0-rbac-backend](https://github.com/jimareed/casbin-auth0-rbac-backend) to setup and run the backend service.
+
+8. clone this repo and install the react app
 ```
 npm install
 ```
 
-Run
+9. set the following environment variables
 ```
-export REACT_APP_DOMAIN=-- insert here --
-export REACT_APP_CLIENTID=-- insert here -- 
-export REACT_APP_AUDIENCE=-- insert here -- 
+export REACT_APP_DOMAIN=-- insert here from casbin-auth0-rbac app settings --
+export REACT_APP_CLIENTID=-- insert here from casbin-auth0-rbac app settings -- 
+export REACT_APP_AUDIENCE=--  insert here from casbin-auth0-rbac API settings (API Identifier)-- 
+```
+
+## Run
+```
 npm start
 ```
 
-Follow the instructions to install and run the backend at: https://github.com/jimareed/auth0-rbac-backend
+Open [http://localhost:3000](http://localhost:3000) and login as alice@example.com.
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Authorize casbin-auth0-rbac to use your tenant during first time login.
+<p  align="center">
+    <img src="./images/authorize-app.png" alt="Auth0 Application Settings" width="50%" height="50%"/>
+</p>
 
+Alice should have access to data1 and data2 (see initial screenshot).
