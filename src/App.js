@@ -4,12 +4,12 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import './App.css';
-import Profile from './Profile';
+import Body from './Body';
 import { useAuth0 } from "./react-auth0-spa";
 
 
 const App = () => {
-  const { loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, loading } = useAuth0();
 
   return (
     <Container className="p-3">
@@ -18,14 +18,18 @@ const App = () => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="justify-content-end" style={{ width: "100%" }}>
-          <Nav.Link onClick={loginWithRedirect} href="#">Login</Nav.Link>
-          <Nav.Link onClick={logout} href="#">Logout</Nav.Link>
+          {!isAuthenticated && !loading && (
+            <Nav.Link onClick={loginWithRedirect} href="#">Login</Nav.Link>
+          )}
+          {isAuthenticated && (
+            <Nav.Link onClick={logout} href="#">Logout</Nav.Link>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
     <Jumbotron>
       <p>Basic RBAC implementation using Casbin and Auth0.</p>
-      <Profile/>
+      <Body/>
     </Jumbotron>
   </Container>
   );

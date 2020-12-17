@@ -2,7 +2,7 @@
 Example RBAC implementation with Casbin and Auth0
 
 <p  align="center">
-    <img src="./images/casbin-auth0-rbac.png"  width="50%" height="50%" alt="Casbin Auth0 RBAC"/>
+    <img src="./images/casbin-auth0-rbac.png"  width="75%" height="75%" alt="Casbin Auth0 RBAC"/>
 </p>
 
 

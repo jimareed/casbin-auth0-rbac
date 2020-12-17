@@ -1,8 +1,8 @@
 import React from "react";
 import { useAuth0 } from "./react-auth0-spa";
-import ShowData from './ShowData';
+import Content from './Content';
 
-const Profile = () => {
+const Body = () => {
   const { user, isAuthenticated, loading } = useAuth0();
 
   if (loading) {
@@ -21,10 +21,10 @@ const Profile = () => {
       <div>
         <p><b>Welcome {user.name}!</b></p>
         <div>
-          <ShowData />
+          <Content />
         </div>
       </div>
      )
 };
 
-export default Profile;
+export default Body;

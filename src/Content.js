@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "./react-auth0-spa";
 
-const ShowData = () => {
+const Content = () => {
   const [data, setData] = useState([]);
 
   const {
@@ -59,4 +59,4 @@ const ShowData = () => {
   );
 };
 
-export default ShowData;
+export default Content;
