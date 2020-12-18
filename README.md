@@ -1,5 +1,5 @@
 # casbin-auth0-rbac
-Example RBAC implementation with Casbin and Auth0.
+Example RBAC authorization with Casbin and Auth0.
 
 <p  align="center">
     <img src="./images/overview.png"  alt="Casbin Auth0 RBAC Overview"/>
@@ -68,6 +68,8 @@ Alice should have access to data1 and data2 (see initial screenshot).
 
 ## Sources
 - [casbin-auth0-rbac-backend](https://github.com/jimareed/casbin-auth0-rbac-backend)
+- [Casbin](https://casbin.org/)
+- [Auth0](https://auth0.com/)
 - [Authentication in Golang with JWTs](https://auth0.com/blog/authentication-in-golang/)
 - [casbin-rbac](https://github.com/jimareed/casbin-rbac)
 - [auth0-rbac](https://github.com/jimareed/auth0-rbac)
