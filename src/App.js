@@ -28,7 +28,7 @@ const App = () => {
       </Navbar.Collapse>
     </Navbar>
     <Jumbotron>
-      <p>Basic RBAC implementation using Casbin and Auth0.</p>
+      <p>Basic RBAC authorization using Casbin and Auth0.</p>
       <Body/>
     </Jumbotron>
   </Container>
