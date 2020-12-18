@@ -67,6 +67,7 @@ Authorize casbin-auth0-rbac to use your tenant during first time login.
 Alice should have access to data1 and data2 (see initial screenshot).
 
 ## Sources
+- [casbin-auth0-rbac-backend](https://github.com/jimareed/casbin-auth0-rbac-backend)
 - [Authentication in Golang with JWTs](https://auth0.com/blog/authentication-in-golang/)
 - [casbin-rbac](https://github.com/jimareed/casbin-rbac)
 - [auth0-rbac](https://github.com/jimareed/auth0-rbac)
