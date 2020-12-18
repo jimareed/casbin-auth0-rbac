@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Button,Modal,Form, Col } from 'react-bootstrap'
 import { useAuth0 } from "./react-auth0-spa";
 import { AiFillEdit } from "react-icons/ai";
 import { AiFillDelete } from "react-icons/ai";
@@ -22,12 +23,22 @@ let cardFooterStyles = {
 
 const Content = () => {
   const [data, setData] = useState([]);
+  const [isOpen, setIsOpen] = useState([]);
+  const [editName, setEditName] = useState([]);
+  const [editDescription, setEditDescription] = useState([]);
 
   const {
     getTokenSilently,
     loading,
     user,
   } = useAuth0();
+
+  function openEditDialog(name, description,index) {
+    setIsOpen(true);
+    setEditName(name)
+    setEditDescription(description)
+    edit(name, description)
+  }
 
   useEffect(() => {
     const getData = async () => {
@@ -50,6 +61,7 @@ const Content = () => {
     };
 
     getData();
+    setIsOpen(false)
   }, []);
 
   const edit = async (name, description, index) => {
@@ -93,7 +105,7 @@ const Content = () => {
                   <div className="card-body">{d.Description}</div>
                   <div className="card-footer"  style={cardFooterStyles} >
                     {d.Permissions.includes("write") && (
-                      <button onClick={() => edit(d.Name, d.Description, index)} style={footerButtonStyles}><AiFillEdit/></button>
+                      <button onClick={() => openEditDialog(d.Name, d.Description,index)} style={footerButtonStyles}><AiFillEdit/></button>
                     )}
                   </div>
                 </div>
@@ -102,6 +114,31 @@ const Content = () => {
           })}
         </div>
       </div>
+      <Modal show={isOpen}>
+          <Modal.Header closeButton onClick={() => setIsOpen(false)}>
+          <Modal.Title>Edit {editName}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+            <Form.Group>
+              <Form.Row>
+                <Form.Label>
+                  Description
+                </Form.Label>
+                <Col>
+                  <Form.Control type="text" value={editDescription} placeholder="Description"/>
+                </Col>
+              </Form.Row>
+            </Form.Group> 
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
+
+          </Modal.Body>
+          <Modal.Footer>
+          </Modal.Footer>
+        </Modal>
     </div>
   );
 };

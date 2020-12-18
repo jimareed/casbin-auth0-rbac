@@ -1,6 +1,11 @@
 # casbin-auth0-rbac
-Example RBAC implementation with Casbin and Auth0
+Example RBAC implementation with Casbin and Auth0.
 
+<p  align="center">
+    <img src="./images/overview.png"  alt="Casbin Auth0 RBAC Overview"/>
+</p>
+
+User interface:
 <p  align="center">
     <img src="./images/casbin-auth0-rbac.png"  width="75%" height="75%" alt="Casbin Auth0 RBAC"/>
 </p>
@@ -60,3 +65,10 @@ Authorize casbin-auth0-rbac to use your tenant during first time login.
 </p>
 
 Alice should have access to data1 and data2 (see initial screenshot).
+
+## Sources
+- [Authentication in Golang with JWTs](https://auth0.com/blog/authentication-in-golang/)
+- [casbin-rbac](https://github.com/jimareed/casbin-rbac)
+- [auth0-rbac](https://github.com/jimareed/auth0-rbac)
+- [react-bootstrap-modal-example](https://www.nicesnippets.com/blog/react-bootstrap-modal-example)
+- [react-boostrap](https://react-bootstrap.github.io/)
