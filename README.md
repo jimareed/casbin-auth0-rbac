@@ -5,7 +5,7 @@ Example RBAC authorization with Casbin and Auth0.
     <img src="./images/overview.png"  alt="Casbin Auth0 RBAC Overview"/>
 </p>
 
-User interface:
+Login as Alice, she has write access to data1 and data2:
 <p  align="center">
     <img src="./images/casbin-auth0-rbac.png"  width="75%" height="75%" alt="Casbin Auth0 RBAC"/>
 </p>
