@@ -33,11 +33,11 @@ const Content = () => {
     user,
   } = useAuth0();
 
-  function openEditDialog(name, description,index) {
+  function openEditDialog(name, description,id) {
     setIsOpen(true);
     setEditName(name)
     setEditDescription(description)
-    edit(name, description)
+    updateData(id, description)
   }
 
   useEffect(() => {
@@ -64,13 +64,13 @@ const Content = () => {
     setIsOpen(false)
   }, []);
 
-  const edit = async (name, description, index) => {
+  const updateData = async (id, description) => {
     try {
       const token = await getTokenSilently();
       // Send a POST request to the Go server for the selected product
       // with the vote type
       const response = await fetch(
-        `http://localhost:8080/data/${name}`,
+        `http://localhost:8080/data/${id}`,
         {
           method: "PUT",
           headers: {
@@ -105,7 +105,7 @@ const Content = () => {
                   <div className="card-body">{d.Description}</div>
                   <div className="card-footer"  style={cardFooterStyles} >
                     {d.Permissions.includes("write") && (
-                      <button onClick={() => openEditDialog(d.Name, d.Description,index)} style={footerButtonStyles}><AiFillEdit/></button>
+                      <button onClick={() => openEditDialog(d.Name, d.Description,d.Id)} style={footerButtonStyles}><AiFillEdit/></button>
                     )}
                   </div>
                 </div>
