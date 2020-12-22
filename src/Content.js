@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Button,Modal,Form, Col } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 import { useAuth0 } from "./react-auth0-spa";
 import { AiFillEdit } from "react-icons/ai";
-import { AiFillDelete } from "react-icons/ai";
+import EditData from "./EditData"
 
 let footerButtonStyles = {
   marginBottom: '15px',
@@ -24,8 +24,7 @@ let cardFooterStyles = {
 const Content = () => {
   const [data, setData] = useState([]);
   const [isOpen, setIsOpen] = useState([]);
-  const [editName, setEditName] = useState([]);
-  const [editDescription, setEditDescription] = useState([]);
+  const [selectedDataItem, setSelectedDataItem] = useState([]);
 
   const {
     getTokenSilently,
@@ -33,12 +32,17 @@ const Content = () => {
     user,
   } = useAuth0();
 
-  function openEditDialog(name, description,id) {
+  function openEditDialog(index) {
+    setSelectedDataItem(data[index])
     setIsOpen(true);
-    setEditName(name)
-    setEditDescription(description)
-    updateData(id, description)
   }
+
+  const handleClose = () => setIsOpen(false);
+
+  const onUpdate = (dataItem) => {
+    updateData(dataItem.Id, dataItem.Description)
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -62,7 +66,7 @@ const Content = () => {
 
     getData();
     setIsOpen(false)
-  }, []);
+  }, [getTokenSilently]);
 
   const updateData = async (id, description) => {
     try {
@@ -105,7 +109,7 @@ const Content = () => {
                   <div className="card-body">{d.Description}</div>
                   <div className="card-footer"  style={cardFooterStyles} >
                     {d.Permissions.includes("write") && (
-                      <button onClick={() => openEditDialog(d.Name, d.Description,d.Id)} style={footerButtonStyles}><AiFillEdit/></button>
+                      <button onClick={() => openEditDialog(index)} style={footerButtonStyles}><AiFillEdit/></button>
                     )}
                   </div>
                 </div>
@@ -114,31 +118,16 @@ const Content = () => {
           })}
         </div>
       </div>
-      <Modal show={isOpen}>
-          <Modal.Header closeButton onClick={() => setIsOpen(false)}>
-          <Modal.Title>Edit {editName}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form>
-            <Form.Group>
-              <Form.Row>
-                <Form.Label>
-                  Description
-                </Form.Label>
-                <Col>
-                  <Form.Control type="text" value={editDescription} placeholder="Description"/>
-                </Col>
-              </Form.Row>
-            </Form.Group> 
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
-
-          </Modal.Body>
-          <Modal.Footer>
-          </Modal.Footer>
-        </Modal>
+      <Modal show={isOpen} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Data - {selectedDataItem.Name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <EditData item={selectedDataItem} onUpdate={onUpdate} />
+        </Modal.Body>
+        <Modal.Footer>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

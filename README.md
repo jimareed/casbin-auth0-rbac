@@ -75,3 +75,4 @@ Alice should have access to data1 and data2 (see initial screenshot).
 - [auth0-rbac](https://github.com/jimareed/auth0-rbac)
 - [react-bootstrap-modal-example](https://www.nicesnippets.com/blog/react-bootstrap-modal-example)
 - [react-boostrap](https://react-bootstrap.github.io/)
+- [How to Open and Close a React-Boostrap Modal Programatically](https://www.pluralsight.com/guides/how-to-open-and-close-react-bootstrap-modal-programmatically)
