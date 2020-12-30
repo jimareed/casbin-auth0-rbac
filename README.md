@@ -23,29 +23,24 @@ Login as Alice, she has write access to data1 and data2:
     <img src="./images/app-settings.png" alt="Auth0 Application Settings" width="50%" height="50%"/>
 </p>
 
-4. update app settings to enable RBAC
-<p  align="center">
-    <img src="./images/rbac-settings.png" alt="Auth0 Application Settings" width="50%" height="50%"/>
-</p>
-
-5. create an API (the API identifier is the value used for REACT_APP_AUDIENCE environment variable below)
+4. create an API (the API identifier is the value used for REACT_APP_AUDIENCE environment variable below)
 <p  align="center">
     <img src="./images/new-api.png" alt="Auth0 API" width="50%" height="50%"/>
 </p>
 
-6. create two users, alice@example.com and bob@example.com
+5. create two users, alice@example.com and bob@example.com
 <p  align="center">
     <img src="./images/create-users.png" alt="Auth0 Create Users" width="50%" height="50%"/>
 </p>
 
-7. follow instructions in [casbin-auth0-rbac-backend](https://github.com/jimareed/casbin-auth0-rbac-backend) to setup and run the backend service.
+6. follow instructions in [casbin-auth0-rbac-backend](https://github.com/jimareed/casbin-auth0-rbac-backend) to setup and run the backend service.
 
-8. clone this repo and install the react app
+7. clone this repo and install the react app
 ```
 npm install
 ```
 
-9. set the following environment variables
+8. set the following environment variables
 ```
 export REACT_APP_DOMAIN=-- insert here from casbin-auth0-rbac app settings --
 export REACT_APP_CLIENTID=-- insert here from casbin-auth0-rbac app settings -- 
